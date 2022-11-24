@@ -1,6 +1,5 @@
 from fastapi import FastAPI, UploadFile
 import uvicorn
-import requests
 
 from model import classify
 
