@@ -7,12 +7,14 @@ from io import BytesIO
 
 model = tf.keras.models.load_model('model')
 
-classes = ("Lucicutiidae", "Mecynocera", "Mysida", "Ostracoda", 
+classes = ["Lucicutiidae", "Mecynocera", "Mysida", "Ostracoda", 
             "Pleuromamma", "Pontellidae", "Rhincalanidae", "Sapphirina", 
             "Scolecitrichidae", "Sergestidae", "Subeucalanidae", "Temoridae", 
             "Acartiidae", "Aetideidae", "Calocalanus", "Calyptopsis", 
             "Candaciidae", "Centropagidae", "Cladocera", "Copilia", 
-            "Eucalanidae", "Euchaetidae", "Haloptilus", "Harpacticoida")
+            "Eucalanidae", "Euchaetidae", "Haloptilus", "Harpacticoida"]
+
+classes = sorted(classes)
 
 color_mode = 'RGB'
 img_height, img_width = 90, 90
