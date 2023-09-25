@@ -7,26 +7,27 @@ from io import BytesIO
 
 model = tf.keras.models.load_model('model')
 
-classes = ["Lucicutiidae", "Mecynocera", "Mysida", "Ostracoda", 
+CLASSES = ["Lucicutiidae", "Mecynocera", "Mysida", "Ostracoda", 
             "Pleuromamma", "Pontellidae", "Rhincalanidae", "Sapphirina", 
             "Scolecitrichidae", "Sergestidae", "Subeucalanidae", "Temoridae", 
             "Acartiidae", "Aetideidae", "Calocalanus", "Calyptopsis", 
             "Candaciidae", "Centropagidae", "Cladocera", "Copilia", 
             "Eucalanidae", "Euchaetidae", "Haloptilus", "Harpacticoida"]
 
-classes = sorted(classes)
+CLASSES = sorted(CLASSES)
 
-color_mode = 'RGB'
-img_height, img_width = 90, 90
+COLOR_MODE = 'RGB'
+IMG_HEIGHT, IMG_WIDTH = 90, 90
 
 def classify(content):
-    img = Image.open(BytesIO(content))
-    img = img.convert(color_mode)
-    img = img.resize((img_height, img_width), Image.NEAREST)
-    img_arr = asarray(img)
-    img_arr = tf.expand_dims(img_arr, 0)     
-    prediction = model.predict(img_arr)
+    img = convert_img_to_tf_array(content)
+    prediction = model.predict(img)
     return {
-        "prediction": classes[np.argmax(prediction)], 
+        "prediction": CLASSES[np.argmax(prediction)], 
         "confidence": (max(prediction[0])/1)
     }
+
+def convert_img_to_tf_array(content):
+    img = Image.open(BytesIO(content))
+    img = img.convert(COLOR_MODE).resize((IMG_HEIGHT, IMG_WIDTH), Image.NEAREST)
+    return tf.expand_dims(asarray(img), 0) 
