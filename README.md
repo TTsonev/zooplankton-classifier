@@ -1,4 +1,5 @@
 # zooplankton-classifier
+## Dataset: https://www.kaggle.com/datasets/iandutoit/crustacea-zooscan-image-database
 ## To run:
 
 pip install -r requirements.txt
