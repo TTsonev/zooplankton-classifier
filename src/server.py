@@ -1,7 +1,8 @@
 from fastapi import FastAPI, UploadFile
 import uvicorn
+import requests
 
-from model import classify
+from classifier import classify
 
 app = FastAPI()
 
@@ -9,12 +10,10 @@ app = FastAPI()
 def read_root():
     return {"message":"WebML"}
 
-'''
 @app.post("/classifyURL")
 async def predicturl(url: str):
     response = requests.get(url)
     return classify(response.content)
-'''
 
 @app.post("/classifyFile/")
 async def create_upload_file(file: UploadFile):

@@ -5,19 +5,18 @@ from numpy import asarray
 from PIL import Image
 from io import BytesIO
 
-model = tf.keras.models.load_model('model')
+model = tf.keras.models.load_model('../data/model.zip')
 
-CLASSES = ["Lucicutiidae", "Mecynocera", "Mysida", "Ostracoda", 
+CLASSES = sorted(["Lucicutiidae", "Mecynocera", "Mysida", "Ostracoda", 
             "Pleuromamma", "Pontellidae", "Rhincalanidae", "Sapphirina", 
             "Scolecitrichidae", "Sergestidae", "Subeucalanidae", "Temoridae", 
             "Acartiidae", "Aetideidae", "Calocalanus", "Calyptopsis", 
             "Candaciidae", "Centropagidae", "Cladocera", "Copilia", 
-            "Eucalanidae", "Euchaetidae", "Haloptilus", "Harpacticoida"]
+            "Eucalanidae", "Euchaetidae", "Haloptilus", "Harpacticoida"])
 
-CLASSES = sorted(CLASSES)
+IMG_HEIGHT, IMG_WIDTH = 90, 90
 
 COLOR_MODE = 'RGB'
-IMG_HEIGHT, IMG_WIDTH = 90, 90
 
 def classify(content):
     img = convert_img_to_tf_array(content)
